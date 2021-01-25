@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build everything
-        run: docker run --rm -it -v "${PWD}":/go/src/github.com/voxxit/docker-gen -w /go/src/github.com/voxxit/docker-gen golang:1.13 bash -c "make get-deps && make release"
+        run: docker run --rm -v "${PWD}":/go/src/github.com/voxxit/docker-gen -w /go/src/github.com/voxxit/docker-gen golang:1.13 bash -c "make get-deps && make release"
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
