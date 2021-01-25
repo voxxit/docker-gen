@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          path: 'github.com/voxxit/docker-gen'
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
