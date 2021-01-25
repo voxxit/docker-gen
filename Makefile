@@ -6,6 +6,8 @@ LDFLAGS:=-X main.buildVersion=$(TAG)
 
 all: docker-gen
 
+export GO111MODULE=off
+
 docker-gen:
 	echo "Building docker-gen"
 	go build -ldflags "$(LDFLAGS)" ./cmd/docker-gen
