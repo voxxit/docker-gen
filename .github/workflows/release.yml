@@ -24,8 +24,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.get_tag_name.outputs.VERSION }}
-          release_name: Release ${{ steps.get_tag_name.outputs.VERSION }}
+          tag_name: ${{ steps.get_version.outputs.VERSION }}
+          release_name: Release ${{ steps.get_version.outputs.VERSION }}
           draft: false
           prerelease: false
       - name: Upload assets to release
@@ -34,4 +34,4 @@ jobs:
         with:
           files: 'docker-gen-*.tar.gz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: ${{ steps.get_tag_name.outputs.VERSION }}
+          release-tag: ${{ steps.get_version.outputs.VERSION }}
