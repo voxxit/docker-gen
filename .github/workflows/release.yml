@@ -9,21 +9,13 @@ name: Release
 
 jobs:
   build:
-    name: Upload Release Asset
+    name: Build & upload release assets
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          path: 'github.com/voxxit/docker-gen'
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.15
-      - name: Get dependencies
-        run: make get-deps
-      - name: Cross-compile for all architectures
-        run: make release
+      - name: Build everything
+        run: docker run --rm -it -v "${PWD}":/go/src/github.com/voxxit/docker-gen -w /go/src/github.com/voxxit/docker-gen golang:1.13 bash -c "make get-deps && make release"
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
